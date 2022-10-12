@@ -1,6 +1,6 @@
 # Lithium
-Backend cohort sep 2022 - Jan 2023
+Backend cohort 19 sep 2022 - Jan 2023
 
 
 # Assignment
-// am complite my assignment
+// my all assignment is complitade
