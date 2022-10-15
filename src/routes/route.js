@@ -2,22 +2,37 @@ const express = require('express');
 const router = express.Router();///test-you
 //importing a custom module
 const xyz = require('../logger')
+const checkstr=require("../validator/formatter")
+const load=require("lodash")
+const chunc1=require("lodash")
 //importing external package
 const underscore = require('underscore')
-
 router.get('/test-me', function (req, res) {
-    //Calling the components of a different custom module
-    console.log("Calling my function ",xyz.myFunction())
-    console.log("The value of the constant is ",xyz.myUrl)
-    //Trying to use an external package called underscore
-    let myArray = ['Akash', 'Pritesh', 'Sabiha']
-    let result = underscore.first(myArray)
-    console.log("The result of underscores examples api is : ", result)
-    
-    res.send('My first ever api!')
+const values=[1,2,3,4,3,2,6,7,9,5,5,2,1]
+console.log(load.union(values))
+const obj=[
+  ["horror","shining"],
+  ["dram","Titanic"],
+  ["thriller","Shutter Island"],
+  ["fantasy","Pans Labyrinth"]
+]
+console.log(load.fromPairs(obj))
 
-    //To be tried what happens if we send multiple response
-    //res.send('My second api!')
+   
+  const arr=["jan","feb","march","april","may","jun","july","ogs","sep","oct","nov","dec"]
+  const chunk=chunc1.chunk(arr,4)
+  console.log(chunk)
+  const tail=[1,3,5,7,9,11,13,15,17,19]
+  const result=load.tail(tail)
+  console.log(result)
+  console.log(checkstr.trim())
+  console.log(checkstr.lowercase())
+  console.log(checkstr.uppercase())
+  console.log(xyz.printdate())
+  console.log(xyz.printmonth())
+  console.log(xyz.getbatchinfo())
+
+    res.send('My first ever api!')
 });
 
 module.exports = router;
