@@ -1,10 +1,16 @@
-const url = "https://www.google.com"
-
-let printSomething = function() {
-    console.log("Request details are - a, b, c")
-    return "done"
+const date=new Date()
+const printdate=function(){
+    let day=date.getDate()
+    return day
 }
-
-let abc = 2022
-module.exports.myUrl = url
-module.exports.myFunction = printSomething
+const printmonth=function(){
+    let month=date.getMonth()+1
+    return month
+}
+const getbatchinfo=function(){
+    return "lithium, W3d5, the topic for today is Nodejs module and npm"
+    
+}
+module.exports.printdate=printdate
+module.exports.printmonth=printmonth
+module.exports.getbatchinfo=getbatchinfo
