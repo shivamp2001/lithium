@@ -42,8 +42,51 @@ router.post('/players',function(req,res){
         return res.send({players})
     }
 })
- 
+//  ===========================================================================================================
+//change voting status in given arry[prayers]
+let persons= [
+   {
+   name: "PK",
+   age: 10,
+   votingStatus: false
+},
+{
+   name: "SK",
+   age: 20,
+   votingStatus: false
+},
+{
+   name: "AA",
+   age: 70,
+   votingStatus: false
+},
+{
+   name: "SC",
+   age: 5,
+   votingStatus: false
+},
+{
+   name: "HO",
+   age: 40,
+   votingStatus: false
+}
+]
+router.post('/voter',function(req,res){
+  let input =req.query.voterAge
+  let voter=[]
+  persons.forEach((persons)=>{
+     if(persons.age > input){
+        persons.votingStatus=true
+        voter.push(persons)
+     }
+  })
+  res.send({voter})
+})
 
+
+
+
+module.exports = router;
 
 
 
