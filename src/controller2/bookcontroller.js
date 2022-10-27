@@ -1,36 +1,49 @@
 const bookModel=require("../model2/bookmodel")
 
-// create(insert)new database
+// for creating a book data
 const createBook= async function(req,res){
    let store =req.body
   let booksdata=await bookModel.create(store)
 res.send({booksdata})
 }
-// fetch all the book data in database
-const getbook= async function(req,res){
-    let allboks= await   bookModel.find()
-    res.send({allboks})
+// for creating a authors data
+const creatauthors= async function(req,res){
+  let store =req.body
+ let authordata=await bookModel.create(store)
+res.send({authordata})
 }
-// list of onle bookname and tags arry
-const booklist= async function(req,res){
-  let books=await bookModel.find().select({bookName:1,tags:1,_id:0})
-  res.send({books})
+//[1] find the authors id 
+const findId=async function(req,res){
+  let findcbgtid=req.body.name
+  let findId=await (await bookModel.find({author_name:{$eq:findcbgtid}}).select({author_id:1}))
+  res.send({findId}) 
 }
- 
-// given any input in year than send in responce that book
-const getBooksInYear=async function(req,res){
-  let postyear=req.query.publishyear
-  let books= await bookModel.find({ year: { $eq: postyear } })
-  res.send({books})
+
+// [2]find author_id and book name
+const chetanbhagatbooks =async function(req,res){
+let chtanid=req.body.book
+let findId=await bookModel.find({author_id:{$eq:chtanid}}).select({author_id:1,name:1})
+res.send({findId}) 
 }
-// given any input in bookname than send in responce that book
-const getBooksname=async function(req,res){
-  let bookname=req.body.bookname
-  let books= await bookModel.find({ bookName: { $eq: bookname } })
-  res.send({books})
+//[3] update the book price using
+const updatevalue=async function(req,res){
+
+  let update=await bookModel.findOneAndUpdate(
+    {name:"Two states"},
+    {$set:{price:100}},
+    {new:true}
+  )
+  res.send({update})
 }
+// [4] find range between price
+const findbookcost=async function(req,res){
+  let data=await  (await bookModel.find({price:{$gte:50,$lte:100}}).select({author_id:1}))
+  res.send(data)
+}
+
 module.exports.createBook=createBook
-module.exports.getbook=getbook
-module.exports.booklist=booklist
-module.exports.getBooksInYear=getBooksInYear
-module.exports.getBooksname=getBooksname
+module.exports.creatauthors=creatauthors
+module.exports.findId=findId
+module.exports.chetanbhagatbooks=chetanbhagatbooks
+module.exports.updatevalue=updatevalue
+module.exports.findbookcost=findbookcost
