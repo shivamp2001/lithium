@@ -1,15 +1,24 @@
 const mongoose = require('mongoose');
-const ObjectId = mongoose.Schema.Types.ObjectId
+
+
 
 const bookSchema = new mongoose.Schema( {
-    name: String,
-    author_id: {
-        type: ObjectId,
-        ref: "Author"
-    }, 
-    price: Number,
-    ratings: Number
+  
+  
+	bookname:String,
+		author:{
+          type:mongoose.Schema.Types.ObjectId,
+          required:true,
+          ref:"Newauthor"
 
+        },
+	    price:Number,
+		ratings:Number,
+		publisher:{
+            type:mongoose.Schema.Types.ObjectId,
+            required:true,
+            ref:"Newpublisher"
+        }
 
 }, { timestamps: true });
 
